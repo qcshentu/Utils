@@ -378,11 +378,11 @@ def evaluate(results_storage, metrics, labels, score, version='opt', thre=250, *
         result = {}
         if version == 'opt_mem':
             tpr_3d, fpr_3d, prec_3d, window_3d, avg_auc_3d, avg_ap_3d = metricor().RangeAUC_volume_opt_mem(
-                labels_original=labels, score=score, windowSize=2*slidingWindow, thre=thre
+                labels_original=labels, score=score, windowSize=slidingWindow, thre=thre
             )
         else:
             tpr_3d, fpr_3d, prec_3d, window_3d, avg_auc_3d, avg_ap_3d = metricor().RangeAUC_volume_opt(
-                labels_original=labels, score=score, windowSize=2*slidingWindow, thre=thre
+                labels_original=labels, score=score, windowSize=slidingWindow, thre=thre
             )
 
         result['VUS_ROC'] = avg_auc_3d
