@@ -27,7 +27,7 @@ class Evaluator():
         input:
             metrics: List[str], e.g. ['affiliation', 'auc', 'r_auc', 'vus', 'f1_raw', 'f1_pa']
             metrics_args: Dict[str, args], e.g. {'affiliation': [0.01, 0.02], 'f1_raw': [0.1, 0.2], ..., 'sliddingWindow': 100}
-            merge: bool, if True: merge all results from different metrics,
+            merge: bool, if True: merge all results from different metrics
         output:
             results_storage: Dict[str, Dict[str, List[float]]]
         """
@@ -72,7 +72,7 @@ class Evaluator():
             thresholds = [np.percentile(self.anomaly_score, 100 * (1-pAR)) for pAR in args['pAR']]
             self._save_thres_info(args['pAR'], thresholds, method, verbose)
         elif method == 'spot':
-            from evaluation.spot import SPOT
+            from .spot import SPOT
             thresholds = []
             for q in args['q']:
                 s = SPOT(q)

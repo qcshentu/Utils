@@ -366,21 +366,23 @@ def evaluate(results_storage, metrics, labels, score, version='opt', thre=250, *
         result['AUC_PR'] = AUC_PR
         results_storage['auc'] = pd.DataFrame([result])
     if "r_auc" in metrics:
+        slidingWindow = args.get('slidingWindow', 100)  # default set 100
         grader = metricor()
         result = {}
-        R_AUC_ROC, R_AUC_PR, _, _, _ = grader.RangeAUC(labels=labels, score=score, window=args['slidingWindow'], plot_ROC=True)
+        R_AUC_ROC, R_AUC_PR, _, _, _ = grader.RangeAUC(labels=labels, score=score, window=slidingWindow, plot_ROC=True)
         result['R_AUC_ROC'] = R_AUC_ROC
         result['R_AUC_PR'] = R_AUC_PR
         results_storage['r_auc'] = pd.DataFrame([result])
     if "vus" in metrics:
+        slidingWindow = args.get('slidingWindow', 100)  # default set 100
         result = {}
         if version == 'opt_mem':
             tpr_3d, fpr_3d, prec_3d, window_3d, avg_auc_3d, avg_ap_3d = metricor().RangeAUC_volume_opt_mem(
-                labels_original=labels, score=score, windowSize=args['slidingWindow'], thre=thre
+                labels_original=labels, score=score, windowSize=slidingWindow, thre=thre
             )
         else:
             tpr_3d, fpr_3d, prec_3d, window_3d, avg_auc_3d, avg_ap_3d = metricor().RangeAUC_volume_opt(
-                labels_original=labels, score=score, windowSize=args['slidingWindow'], thre=thre
+                labels_original=labels, score=score, windowSize=slidingWindow, thre=thre
             )
 
         result['VUS_ROC'] = avg_auc_3d
