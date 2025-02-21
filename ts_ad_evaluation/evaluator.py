@@ -19,6 +19,8 @@ class Evaluator():
         self.gt = gt
         self.anomaly_score = anomaly_score
         self.save_path = save_path
+        if not os.path.exists(save_path):
+            os.makedirs(save_path)
 
     def evaluate(self, metrics, merge=False, verbose=True, **metrics_args):
         """
