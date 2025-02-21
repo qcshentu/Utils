@@ -24,7 +24,7 @@ class Evaluator():
 
     def evaluate(self, metrics, merge=False, verbose=True, **metrics_args):
         """
-        support metric: 'affiliation', 'auc', 'r_auc', 'vus', 'f1_raw', 'f1_pa', 'best_f1'
+        support metric: 'affiliation', 'auc', 'r_auc', 'vus', 'f1_raw', 'f1_pa', 'best_f1', 'f1_r', 'f1_event'
 
         input:
             metrics: List[str], e.g. ['affiliation', 'auc', 'r_auc', 'vus', 'f1_raw', 'f1_pa']
