@@ -83,7 +83,7 @@ class Evaluator():
                 ret = s.run()
                 thresholds.append(np.mean(ret['thresholds']))
             self._save_thres_info(args['q'], thresholds, method, verbose)
-
+            
         return thresholds
     
     def _save_thres_info(self, arg1, arg2, method, verbose):
