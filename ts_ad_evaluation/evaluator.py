@@ -4,6 +4,7 @@ import numpy as np
 from . import f1
 from . import affiliation
 from . import auc_vus
+from . import pate
 
 import os
 
@@ -24,7 +25,7 @@ class Evaluator():
 
     def evaluate(self, metrics, merge=False, verbose=True, **metrics_args):
         """
-        support metric: 'affiliation', 'auc', 'r_auc', 'vus', 'f1_raw', 'f1_pa', 'best_f1', 'f1_r', 'f1_event'
+        support metric: 'affiliation', 'auc', 'r_auc', 'vus', 'f1_raw', 'f1_pa', 'best_f1', 'f1_r', 'f1_event', 'pate'
 
         input:
             metrics: List[str], e.g. ['affiliation', 'auc', 'r_auc', 'vus', 'f1_raw', 'f1_pa']
@@ -38,7 +39,7 @@ class Evaluator():
         f1.evaluate(results_storage, metrics, labels=self.gt, score=self.anomaly_score, **metrics_args)
         affiliation.evaluate(results_storage, metrics, labels=self.gt, score=self.anomaly_score, **metrics_args)
         auc_vus.evaluate(results_storage, metrics, labels=self.gt, score=self.anomaly_score, **metrics_args)
-
+        pate.evaluate(results_storage, metrics, labels=self.gt, score=self.anomaly_score, **metrics_args)
         # save
         self._save_csv(results_storage, metrics, merge=merge, verbose=verbose)
         return results_storage
